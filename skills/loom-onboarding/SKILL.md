@@ -18,17 +18,26 @@ missing, run **loom-server-install** (it asks before every install or write),
 then continue at step 2.
 
 ## 2. Connection
-Today the bot runs `loom-cli` through shell access on that computer. loom-cli
-defaults to `ws://127.0.0.1:8765/ws`. After a Loom-managed install
-(loom-server-install), the token is at `<state-dir>/local-worker/token`, which
-loom-cli does not find by itself: always pass `--token-file` with that path
-(or set `LOOM_TOKEN_FILE` to it). Never `cat` the file. Before running
-loom-cli from a shell that may carry another session's environment, unset
-`LOOM_URL`, `LOOM_STATE_DIR` and `CARGO_TARGET_DIR`, and don't let a stray
-`LOOM_TOKEN_FILE` point somewhere else. A Loom MCP connector is planned:
-record the preference if asked and keep using loom-cli. Check with
-`loom-cli --token-file <path> doctor`. Save the loom-cli path and the
-token-file path you used.
+Ask how the bot should talk to Loom:
+
+- **loom-cli on that computer** (default): the bot runs `loom-cli` through
+  shell access. loom-cli defaults to `ws://127.0.0.1:8765/ws`. After a
+  Loom-managed install (loom-server-install), the token is at
+  `<state-dir>/local-worker/token`, which loom-cli does not find by itself:
+  always pass `--token-file` with that path (or set `LOOM_TOKEN_FILE` to it).
+  Never `cat` the file. Before running loom-cli from a shell that may carry
+  another session's environment, unset `LOOM_URL`, `LOOM_STATE_DIR` and
+  `CARGO_TARGET_DIR`, and don't let a stray `LOOM_TOKEN_FILE` point somewhere
+  else. Check with `loom-cli --token-file <path> doctor`. Save the loom-cli
+  path and the token-file path you used.
+- **MCP over Tailscale**: the bot calls `loom-mcp` as an HTTP connector on
+  the tailnet (`https://<host>.<tailnet>.ts.net:<port>/mcp`). Run
+  **loom-mcp-install** (it asks before every install or Serve change). This
+  is the right choice when Loom runs on another machine on the tailnet, or
+  when the user wants the bot to use MCP instead of shelling loom-cli.
+  loom-cli remains available as a fallback.
+
+Save the connection mode.
 
 ## 3. Server
 Check `curl -s http://127.0.0.1:8765/health` and `loom-cli node`. If the server
