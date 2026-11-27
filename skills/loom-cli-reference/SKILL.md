@@ -12,7 +12,9 @@ Checked against: loom-cli built from Loom workspace version 0.1.0, protocol
 ## Global flags
 `--connect <url>` (fallback `LOOM_URL`, then `ws://127.0.0.1:8765/ws`),
 `--token-file <path>` (fallback `LOOM_TOKEN_FILE`, then
-`<state dir>/<host>_<port>/token`), `--ca-file <pem>`,
+`<state dir>/<host>_<port>/token`). After a Loom-managed install the token is
+`<state-dir>/local-worker/token`; pass `--token-file` with that path. Then
+`--ca-file <pem>`,
 `--allow-insecure-remote`, `--json` (one JSON envelope on stdout). There is no
 `--token` and no `--key` flag, by design.
 

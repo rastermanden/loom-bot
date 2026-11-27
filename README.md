@@ -11,7 +11,8 @@ Version: see `VERSION`. Changes: see `CHANGELOG.md`. License: MIT.
 
 ## What it does (v0.1)
 
-- Installs and starts loom-server and loom-cli if you don't have them yet.
+- Installs and starts a Loom-managed loom-server (self-updating, under the
+  state directory) and loom-cli if you don't have them yet.
 - Gets you set up one question at a time: where loom-server runs, providers,
   model per kind of work, isolation, projects, merge policy and autonomy.
 - Starts sessions inside the right project after one model-confirmation card.
@@ -29,7 +30,8 @@ restarts a server or approves out-of-scope calls without your explicit pick.
 
 - A computer that runs, or will run, loom-server and loom-cli, registered with
   Grok Bot so the bot can run shell commands there. If Loom is not installed
-  yet, the bot installs it for you (asking before every step). loom-cli finds the server
+  yet, the bot installs a Loom-managed worker (the layout that self-updates),
+  asking before every step. loom-cli finds the server
   (`ws://127.0.0.1:8765/ws`) and its token file by default.
 - At least one model provider with a credential in Loom.
 - Optional: `gh` logged in on that computer, for PR links and merges you approve.

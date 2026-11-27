@@ -5,11 +5,16 @@ template-update skill reads this file to tell you what is new.
 
 ## 0.2.0 - unreleased
 
-- New skill loom-server-install: detect platform and prerequisites, install
-  loom-server from Loom's checksum-verified release installer (previewed with
-  `--dry-run` first), build loom-cli from source, start the server detached or
-  as a user service, find the token file path, and health-check
-  (`GET /health`). Asks before every install or write; never reads the token.
+- New skill loom-server-install: install a Loom-managed worker (the only
+  layout that self-updates: `<state-dir>/server/<tag>/loom-server`, preferred
+  as a systemd user unit). There is no install.sh flag for that layout; the
+  official entry point is the desktop client's "Install a worker on this
+  machine". For a headless machine the skill follows the same steps, using
+  Loom's checksum-verified installer only to fetch the binary. Mentions the
+  `--no-auto-update` / `LOOM_NO_AUTO_UPDATE` opt-out, and that dev builds,
+  containers and `~/.local/bin` never self-update. Builds loom-cli from
+  source, health-checks `GET /health`, and tells loom-cli about the managed
+  token file. Asks before every install or write; never reads the token.
 - loom-onboarding step 1 now runs it when Loom is not installed.
 - loom-rules write table lists the new skill.
 
