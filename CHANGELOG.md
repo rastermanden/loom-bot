@@ -3,6 +3,17 @@
 All notable changes to this template. Versions follow semver. The bot's
 template-update skill reads this file to tell you what is new.
 
+## 0.3.0 - unreleased
+
+- New skill loom-mcp-install: run `loom-mcp` on loopback as a systemd user
+  unit, expose it with Tailscale Serve (HTTPS, tailnet only, never Funnel),
+  and connect a Grok Bot HTTP MCP connector with the operator bearer token
+  (`Authorization: Bearer`, path from `LOOM_TOKEN_FILE`). Mutating tools are
+  off unless the user opts in. Leaves a compatible managed loom-server on its
+  current release. Never prints tokens.
+- loom-onboarding step 2 now offers loom-cli (default) or MCP over Tailscale.
+- loom-rules write table lists the new skill.
+
 ## 0.2.0 - unreleased
 
 - New skill loom-server-install: install a Loom-managed worker (the only

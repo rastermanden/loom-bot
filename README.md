@@ -2,7 +2,8 @@
 
 **Working name:** Loom Pilot. That name is a placeholder and can change.
 
-A chat companion that drives [Loom](#requirements) through `loom-cli`. You talk
+A chat companion that drives [Loom](#requirements) through `loom-cli` or, when
+you choose it, through Loom MCP over Tailscale. You talk
 to one bot. It starts Loom agent sessions on your machine, watches them, brings
 their questions and blocked tool calls to chat as tap-to-answer cards, and
 tells you when work finishes.
@@ -36,6 +37,10 @@ restarts a server or approves out-of-scope calls without your explicit pick.
 - At least one model provider with a credential in Loom.
 - Optional: `gh` logged in on that computer, for PR links and merges you approve.
 - Optional: the pstack plugin (poteto principles) as a quality bar for sessions.
+- Optional: Loom MCP over Tailscale, when the bot should talk to Loom as an
+  HTTP connector on your tailnet instead of (or as well as) shelling loom-cli.
+  Needs the Tailscale plugin and a loopback `loom-mcp` exposed with Tailscale
+  Serve (never Funnel). The bot's loom-mcp-install skill walks through it.
 
 ## Install
 
@@ -68,6 +73,7 @@ bot/profile.md              name, description, memory keys
 skills/getting-started      first conversation
 skills/loom-onboarding      setup questions
 skills/loom-server-install  install and start loom-server and loom-cli
+skills/loom-mcp-install     loopback loom-mcp + Tailscale Serve + connector
 skills/loom-sessions        start, watch, approve, status, archive
 skills/loom-rules           shared rules every skill follows
 skills/loom-cli-reference   loom-cli verbs and flags (versioned)
