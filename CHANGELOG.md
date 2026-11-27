@@ -3,6 +3,20 @@
 All notable changes to this template. Versions follow semver. The bot's
 template-update skill reads this file to tell you what is new.
 
+## 0.3.0 - unreleased
+
+- New skill loom-mcp-install: run `loom-mcp` on loopback, optionally share it
+  with Tailscale Serve (HTTPS, tailnet only, never Funnel), and use that as
+  a fallback when the user's computer is offline. Explains that the bot
+  cannot reach a private LAN address from the cloud. One copy-paste install
+  command; mutating tools off unless the user opts in. Never prints tokens.
+- Onboarding auto-detects a working path, in order: the user's connected
+  computer, then a Tailscale HTTPS URL, then loom-cli. It only asks when it
+  cannot decide, stores a primary and a fallback, and switches with a one-line
+  notice if the primary fails a `/health` check. Ends with an "it works"
+  status/ls check.
+- README Quick start: three steps from template to first session.
+
 ## 0.2.0 - unreleased
 
 - New skill loom-server-install: install a Loom-managed worker (the only

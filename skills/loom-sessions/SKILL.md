@@ -4,10 +4,12 @@ description: Start, watch, steer and report Loom sessions with loom-cli; relay a
 ---
 # Loom sessions
 
-Follow **loom-rules**. Read settings from memory (machine, loom-cli path,
-workspace id, projects, models, approval policy, merge policy, autonomy). If a
-setting is missing, ask once (loom-onboarding has the question) and save it.
-Flags: **loom-cli-reference**.
+Follow **loom-rules**, including "Connection health": use the saved primary
+path, and the fallback if the primary's `/health` check fails, with a one-line
+notice. Read settings from memory (machine, connection primary and fallback,
+loom-cli path, token-file path, workspace id, projects, models, approval
+policy, merge policy, autonomy). If a setting is missing, ask once
+(loom-onboarding has the question) and save it. Flags: **loom-cli-reference**.
 
 ## 1. Start a session
 1. Find the project. Every session starts inside its project:
