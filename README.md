@@ -2,15 +2,27 @@
 
 **Working name:** Loom Pilot. That name is a placeholder and can change.
 
-A chat companion that drives [Loom](#requirements) through `loom-cli` or, when
-you choose it, through Loom MCP over Tailscale. You talk
-to one bot. It starts Loom agent sessions on your machine, watches them, brings
-their questions and blocked tool calls to chat as tap-to-answer cards, and
-tells you when work finishes.
+A chat companion that drives [Loom](#requirements) from chat. It finds Loom
+on your computer when it can, falls back to a private Tailscale address if
+you have set that up, and otherwise uses `loom-cli`. It starts agent
+sessions, watches them, brings their questions and approvals to you as
+cards, and tells you when work finishes.
 
 Version: see `VERSION`. Changes: see `CHANGELOG.md`. License: MIT.
 
-## What it does (v0.1)
+## Quick start
+
+1. Create a Grok Bot, paste the name and description from `bot/profile.md`,
+   and add every folder under `skills/` as a skill.
+2. Connect the computer that should run Loom to Grok Bot, then say hi in
+   the new bot's chat. It looks for a working Loom by itself and only asks
+   when it cannot decide. If Loom is not installed yet, it offers one
+   confirmation and, if it cannot run the steps for you, one copy-paste
+   command.
+3. When it says "Loom is ready", ask it to start a session or just say
+   **status**.
+
+## What it does
 
 - Installs and starts a Loom-managed loom-server (self-updating, under the
   state directory) and loom-cli if you don't have them yet.
@@ -32,24 +44,22 @@ restarts a server or approves out-of-scope calls without your explicit pick.
 - A computer that runs, or will run, loom-server and loom-cli, registered with
   Grok Bot so the bot can run shell commands there. If Loom is not installed
   yet, the bot installs a Loom-managed worker (the layout that self-updates),
-  asking before every step. loom-cli finds the server
-  (`ws://127.0.0.1:8765/ws`) and its token file by default.
+  asking before every step. The default worker URL is
+  `ws://127.0.0.1:8765/ws`. After a managed install, pass the token file path
+  the onboarding skill records (never print the token).
 - At least one model provider with a credential in Loom.
 - Optional: `gh` logged in on that computer, for PR links and merges you approve.
 - Optional: the pstack plugin (poteto principles) as a quality bar for sessions.
-- Optional: Loom MCP over Tailscale, when the bot should talk to Loom as an
-  HTTP connector on your tailnet instead of (or as well as) shelling loom-cli.
-  Needs the Tailscale plugin and a loopback `loom-mcp` exposed with Tailscale
-  Serve (never Funnel). The bot's loom-mcp-install skill walks through it.
+- Optional: `loom-mcp` on your computer (loopback), and Tailscale Serve
+  (HTTPS, your tailnet only, never Funnel) as a fallback when that computer
+  is offline. The bot cannot reach a private LAN address from the cloud; it
+  uses your connected computer, or that private HTTPS URL. See
+  loom-mcp-install.
 
 ## Install
 
-1. Create a new Grok Bot.
-2. Copy the name and description from `bot/profile.md`.
-3. Add every folder under `skills/` as a skill (one `SKILL.md` each).
-4. Optionally add the routines in `routines/` as **paused** routines. The
-   getting-started skill can create them for you instead.
-5. Say hi. The bot runs `getting-started`.
+Follow [Quick start](#quick-start). Optionally add the routines in
+`routines/` as **paused** routines (getting-started can create them).
 
 ## Update
 
@@ -73,7 +83,7 @@ bot/profile.md              name, description, memory keys
 skills/getting-started      first conversation
 skills/loom-onboarding      setup questions
 skills/loom-server-install  install and start loom-server and loom-cli
-skills/loom-mcp-install     loopback loom-mcp + Tailscale Serve + connector
+skills/loom-mcp-install     loopback loom-mcp, optional Tailscale fallback
 skills/loom-sessions        start, watch, approve, status, archive
 skills/loom-rules           shared rules every skill follows
 skills/loom-cli-reference   loom-cli verbs and flags (versioned)
