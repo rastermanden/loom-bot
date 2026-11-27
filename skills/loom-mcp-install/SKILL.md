@@ -144,7 +144,8 @@ when the computer is offline:
    `Authorization: Bearer <token>`. Ask the user to paste the token from the
    token file into the connector settings; never read it into chat.
 3. Refresh tools. Read tools: `ls`, `status`, `models_list`,
-   `providers_list`. Mutating tools appear only with `--allow-mutating-tools`.
+   `providers_list`. Mutating tools (including `copilot_login_start` and
+   `copilot_login_status`) appear only with `--allow-mutating-tools`.
 
 Do not add a connector for `http://127.0.0.1` or any private LAN address.
 
@@ -173,6 +174,14 @@ When this connection is in use (and whenever the saved primary fails):
 | `archive` | `session archive` | yes |
 | `models_list` | `models list` | no |
 | `providers_list` | `providers list` | no |
+| `copilot_login_start` | `providers login` (always `--no-wait`; `no_wait: false` and `timeout` are rejected) | yes |
+| `copilot_login_status` | `providers login-status` | yes |
+
+These two Copilot tools exist on loom-mcp builds from Loom main after the
+#461 commits. They return only the public device-login URL, user code, and
+status (never a token), and they need `--allow-mutating-tools`. Older or
+`--read-only` builds will not list them; use `loom-cli` on the computer
+instead (see loom-providers-setup).
 
 Destructive verbs are not exposed: `session delete`, `retention set`,
 `providers set-key`, `providers remove`.

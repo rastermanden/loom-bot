@@ -19,15 +19,21 @@ Version: see `VERSION`. Changes: see `CHANGELOG.md`. License: MIT.
    when it cannot decide. If Loom is not installed yet, it offers one
    confirmation and, if it cannot run the steps for you, one copy-paste
    command.
-3. When it says "Loom is ready", ask it to start a session or just say
+3. It then helps you set up at least one model provider, one question at a
+   time: sign in to GitHub Copilot with a one-time code, or store a
+   DeepSeek / OpenCode Go / OpenCode Zen key (asked for in a masked form,
+   never pasted in chat). TypeSafe is a bot secret, not a Loom provider.
+   After that it asks which models to use for each kind of work.
+4. When it says "Loom is ready", ask it to start a session or just say
    **status**.
 
 ## What it does
 
 - Installs and starts a Loom-managed loom-server (self-updating, under the
   state directory) and loom-cli if you don't have them yet.
-- Gets you set up one question at a time: where loom-server runs, providers,
-  model per kind of work, isolation, projects, merge policy and autonomy.
+- Gets you set up one question at a time: where loom-server runs, providers
+  (Copilot login or an API key stored from a masked secret form), model per
+  kind of work, isolation, projects, merge policy and autonomy.
 - Starts sessions inside the right project after one model-confirmation card.
 - Watches sessions and stays silent unless one finishes, fails, gets stuck, or
   waits on you.
@@ -82,6 +88,7 @@ VERSION, CHANGELOG.md, LICENSE, README.md
 bot/profile.md              name, description, memory keys
 skills/getting-started      first conversation
 skills/loom-onboarding      setup questions
+skills/loom-providers-setup Copilot login and provider API keys
 skills/loom-server-install  install and start loom-server and loom-cli
 skills/loom-mcp-install     loopback loom-mcp, optional Tailscale fallback
 skills/loom-sessions        start, watch, approve, status, archive

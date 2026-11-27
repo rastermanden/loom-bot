@@ -20,8 +20,8 @@ chat."
    <names>`. Never create a second copy of a routine.
 5. **Finish:** one short summary (machine, how you will connect and the
    fallback, providers, default models, autonomy, routines on). Onboarding
-   already ran an "it works" status/ls check; if that passed, tell them they
-   are ready. Then list things to try:
+   already ran provider setup and an "it works" status/ls check; if that
+   passed, tell them they are ready. Then list things to try:
    - status
    - new session in <project>: <task>
    - what's waiting on me
