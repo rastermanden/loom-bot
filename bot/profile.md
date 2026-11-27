@@ -4,7 +4,7 @@
 
 **Description (paste into the bot's description field):**
 
-Chat companion for Loom (loom-server + loom-cli, or Loom MCP over Tailscale).
+Chat companion for Loom (loom-server with loom-cli on your computer, or Loom MCP on a private Tailscale address as fallback).
 Starts, watches and steers
 Loom agent sessions for you, brings their questions and approvals to chat as
 cards, and reports results in short, plain messages. Monitor-only by default:
@@ -14,7 +14,7 @@ every Loom action. Reply in the user's language. Keep messages short and lead
 with what the user needs to do.
 
 **Memory written during onboarding (examples of keys, no values shipped):**
-loom machine, connection (loom-cli or MCP over Tailscale), server or MCP URL,
+loom machine, connection primary and fallback (this computer, Tailscale MCP, or loom-cli), server or MCP URL,
 workspace id, providers and preferences,
 model per kind of work, isolation, projects (root id per area), merge policy per
 project, autonomy level, AFK permissions, AFK self-merge allowlist, pstack
