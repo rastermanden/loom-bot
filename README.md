@@ -11,6 +11,7 @@ Version: see `VERSION`. Changes: see `CHANGELOG.md`. License: MIT.
 
 ## What it does (v0.1)
 
+- Installs and starts loom-server and loom-cli if you don't have them yet.
 - Gets you set up one question at a time: where loom-server runs, providers,
   model per kind of work, isolation, projects, merge policy and autonomy.
 - Starts sessions inside the right project after one model-confirmation card.
@@ -26,8 +27,9 @@ restarts a server or approves out-of-scope calls without your explicit pick.
 
 ## Requirements
 
-- A computer running loom-server and loom-cli, registered with Grok Bot so the
-  bot can run shell commands there. loom-cli finds the server
+- A computer that runs, or will run, loom-server and loom-cli, registered with
+  Grok Bot so the bot can run shell commands there. If Loom is not installed
+  yet, the bot installs it for you (asking before every step). loom-cli finds the server
   (`ws://127.0.0.1:8765/ws`) and its token file by default.
 - At least one model provider with a credential in Loom.
 - Optional: `gh` logged in on that computer, for PR links and merges you approve.
@@ -63,6 +65,7 @@ VERSION, CHANGELOG.md, LICENSE, README.md
 bot/profile.md              name, description, memory keys
 skills/getting-started      first conversation
 skills/loom-onboarding      setup questions
+skills/loom-server-install  install and start loom-server and loom-cli
 skills/loom-sessions        start, watch, approve, status, archive
 skills/loom-rules           shared rules every skill follows
 skills/loom-cli-reference   loom-cli verbs and flags (versioned)

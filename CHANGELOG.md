@@ -3,7 +3,17 @@
 All notable changes to this template. Versions follow semver. The bot's
 template-update skill reads this file to tell you what is new.
 
-## 0.1.0 - unreleased
+## 0.2.0 - unreleased
+
+- New skill loom-server-install: detect platform and prerequisites, install
+  loom-server from Loom's checksum-verified release installer (previewed with
+  `--dry-run` first), build loom-cli from source, start the server detached or
+  as a user service, find the token file path, and health-check
+  (`GET /health`). Asks before every install or write; never reads the token.
+- loom-onboarding step 1 now runs it when Loom is not installed.
+- loom-rules write table lists the new skill.
+
+## 0.1.0
 
 First draft.
 

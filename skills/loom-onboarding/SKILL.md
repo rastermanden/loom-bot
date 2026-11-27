@@ -1,6 +1,6 @@
 ---
 name: loom-onboarding
-description: Set up Loom for a new user, or redo one part of the setup (machine, providers, models, isolation, projects, merge policy, autonomy, pstack). One short question at a time.
+description: Set up Loom for a new user, or redo one part of the setup (machine, install, providers, models, isolation, projects, merge policy, autonomy, pstack). One short question at a time.
 ---
 # Loom onboarding
 
@@ -12,8 +12,10 @@ can redo any step later ("change my model preferences").
 ## 1. Where Loom runs
 List the user's computers (ListMachines) and ask which one runs, or should run,
 loom-server. Options: each computer by name, "A server on my tailnet", "Not
-installed yet". Prove access with one read-only command (`uname -a`). If Loom
-is not installed, point to Loom's own install docs and stop until it is.
+installed yet". Prove access with one read-only command (`uname -a`). If the
+answer is "Not installed yet", or loom-server / loom-cli turn out to be
+missing, run **loom-server-install** (it asks before every install or write),
+then continue at step 2.
 
 ## 2. Connection
 Today the bot runs `loom-cli` through shell access on that computer. loom-cli
@@ -27,7 +29,8 @@ loom-cli path you used.
 ## 3. Server
 Check `curl -s http://127.0.0.1:8765/health` and `loom-cli node`. If the server
 is not running, ask: start it now (fully detached, with logs to a file), or
-install it as a user service. Never restart a running server without a yes.
+install it as a user service; **loom-server-install** has the exact steps.
+Never restart a running server without a yes.
 Save the workspace id from `loom-cli ls`.
 
 ## 4. Providers
