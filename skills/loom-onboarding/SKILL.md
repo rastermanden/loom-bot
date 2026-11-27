@@ -75,19 +75,18 @@ steps. Never restart a running server without a yes. Save the workspace
 id from `loom-cli ls`.
 
 ## 4. Providers
-Run `loom-cli providers list` and `loom-cli models list`. If none has a
-credential, ask which provider the user has. For an API key, the user writes it
-to a file on their computer, then run `loom-cli providers set-key --provider <p>
---key-file <path>`. Never ask for the key in chat and never print it. Prove
-inference with a one-word test session. Per provider, ask: plan type
-(subscription / prepaid / unknown) and preference (use first / normal / only
-when needed / don't use).
+Run **loom-providers-setup**. It lists providers, guides GitHub Copilot device
+login or a DeepSeek / OpenCode key (secret form, never in chat), explains that
+TypeSafe is not a Loom provider, and will not finish without at least one Loom
+credential unless the user stops on purpose.
 
 ## 5. Models per kind of work
-From `loom-cli models list` only, ask the preferred model for: main session,
-delegated children (one for all, or per kind: cheap, coding, review, vision,
-reasoning). Offer "Decide each time" as an option. Save the mapping. Ship no
-defaults of your own.
+**loom-providers-setup** already asked this if you just ran it; skip when the
+mapping is saved. Otherwise, from `loom-cli models list` only, ask the preferred
+model for: main session, delegated children (one for all, or per kind: `cheap`,
+`coding`, `review`, `vision`, `long-reasoning`). Offer "Decide each time" as an
+option. Save the mapping. Ship no defaults of your own. Tell the user clearly
+when a proposed model trains on request data, or when you could not confirm.
 
 ## 6. Isolation
 Say in two sentences: on a host install, agent commands run as the user with

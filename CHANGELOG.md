@@ -3,6 +3,26 @@
 All notable changes to this template. Versions follow semver. The bot's
 template-update skill reads this file to tell you what is new.
 
+## 0.4.0 - unreleased
+
+- New skill loom-providers-setup, wired into onboarding and Quick start: one
+  short question at a time to set up at least one Loom provider. GitHub
+  Copilot uses the worker device-login flow (MCP `copilot_login_start` /
+  `copilot_login_status` when those tools exist, otherwise
+  `loom-cli providers login --no-wait --json` and `login-status`). The bot
+  shows the verification URL and one-time user code, polls until done or
+  expired, and confirms with `providers list` / `models list`.
+- API keys for DeepSeek, OpenCode Go, and OpenCode Zen (pay-as-you-go, needs
+  credits) are collected with Grok Bot's masked secret form (a box
+  environment secret, never in chat), written to a mode-0600 key file, then
+  stored with `providers set-key --key-file`. Keys are never printed or
+  passed as CLI arguments. Official key-page URLs are in the skill.
+- TypeSafe is documented as not a Loom provider: the bot stores the key as a
+  box secret and can optionally write the local loom-cli `jev` key file.
+- After setup, the bot asks for models per kind of work (`cheap`, `coding`,
+  `review`, `vision`, `long-reasoning`) from `models list`, and flags models
+  that train on request data when the provider's published policy says so.
+
 ## 0.3.0 - unreleased
 
 - New skill loom-mcp-install: run `loom-mcp` on loopback, optionally share it

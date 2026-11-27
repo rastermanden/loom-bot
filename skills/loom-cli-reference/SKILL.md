@@ -74,8 +74,23 @@ run --workspace <id> (--task <text> | --task-file <path>) [--name <name>] [--new
 
 ## Providers (onboarding only)
 - `providers add --id <id> --kind openai-compatible --endpoint <url> [--model <id>]... [--default-model <id>]`
+  (for a gateway the worker did not seed, such as OpenCode Go or OpenCode Zen;
+  at least one `--model` is required; built-in ids are refused)
 - `providers set-key --provider <id> (--from-env <NAME> | --key-file <path>)`
+  (openai, deepseek, or an openai-compatible provider; never `--key`; never
+  `github-copilot`)
 - `providers discover --provider <id>`, `providers remove --id <id>`
+- `providers login --provider github-copilot [--no-wait] [--timeout <seconds>]`
+  Start the worker's GitHub Copilot device flow; print only the public
+  verification URL and user code. `--no-wait` returns immediately (exit 0)
+  with `login_id` so you can show the code and poll separately. `--timeout`
+  does not apply with `--no-wait`. Needs `wss://` or loopback `ws://`
+  (`--allow-insecure-remote` does not override; exit 2). Needs
+  `configure_providers` (exit 3).
+- `providers login-status --login-id <id>`
+  One poll: text is the status word `pending`, `configured`, or `failed`.
+  `--json` is `{login_id, status, message?}` (`message` only when failed;
+  never a token). Exit 0 configured, 4 pending, 1 failed.
 
 ## Idempotency
 `--request-id <uuid>` on `run`, `send`, `answer`, `approve`, `deny`, `stop`,
@@ -84,6 +99,10 @@ instead of acting twice (`replayed: true` in `--json`). Reuse the id only for
 the same mutation.
 
 ## Exit codes
-0 ok, 1 internal, 2 usage, 3 blocked, 4 timeout, 5 not found or gone, 6 protocol
-or auth mismatch, 7 transport unreachable. Plain-words meanings: loom-rules
+0 ok (including a successful `providers login --no-wait` start, or login
+status `configured`), 1 internal or Copilot login `failed`, 2 usage, 3 blocked
+(including a missing `configure_providers` capability), 4 timeout (`wait`,
+`events --follow`, `providers login` still pending, or `providers
+login-status` observing `pending`), 5 not found or gone, 6 protocol or auth
+mismatch, 7 transport unreachable. Plain-words meanings: loom-rules
 "Status words".

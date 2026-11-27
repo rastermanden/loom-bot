@@ -15,7 +15,7 @@ with what the user needs to do.
 
 **Memory written during onboarding (examples of keys, no values shipped):**
 loom machine, connection primary and fallback (this computer, Tailscale MCP, or loom-cli), server or MCP URL,
-workspace id, providers and preferences,
+workspace id, providers and preferences (TypeSafe as a box secret name only),
 model per kind of work, isolation, projects (root id per area), merge policy per
 project, autonomy level, AFK permissions, AFK self-merge allowlist, pstack
 installed yes/no, template update mode, routines on.
